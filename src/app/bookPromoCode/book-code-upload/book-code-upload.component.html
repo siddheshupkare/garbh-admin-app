@@ -1,0 +1,55 @@
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <form [formGroup]="codeForm" fxLayout="row" fxLayoutAlign="space-around center">
+    <div>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Enter a code</mat-label>
+        <input matInput type="text" [(ngModel)]="value" formControlName="code">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Select Code Type</mat-label>
+        <mat-select formControlName="codeType" (selectionChange)="inputCheck($event)">
+          <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="form-field" appearance="outline" *ngIf="showInputField">
+          <mat-label>Enter Partner Name</mat-label>
+          <input matInput formControlName="partnerName">
+        </mat-form-field>
+    </div>
+    <div>
+      <button class="btn-submit" mat-raised-button (click)="onSingleCodeSubmit()">Submit</button>
+    </div>
+  </form>
+  <h2>OR</h2>
+  <div class="bulk-upload-sec">
+    <ngx-dropzone accept=".xlsx, .xls" (change)="uploadBookscode($event)"  fxLayout="column" fxLayoutAlign="space-around center">
+      <ngx-dropzone-label *ngIf="!showFileIcon">Drag and Drop or Click to Upload File</ngx-dropzone-label>
+      <div><mat-icon class="upload-icon" *ngIf="!showFileIcon">cloud_upload</mat-icon></div>
+      <ng-container *ngIf="showFileIcon">
+        <mat-icon class="file-ico"> insert_drive_file</mat-icon>
+        <p>{{fileName}}</p>
+      </ng-container>
+
+      <!-- <mat-spinner *ngIf="showLoader" [diameter]="50"></mat-spinner> -->
+    </ngx-dropzone>
+      <div>
+        <input type="file" (change)="uploadBookscode($event)" accept=".xlsx, .xls" #file style="display: none;">
+        <button mat-raised-button (click)="file.click()">Upload File</button>
+      </div>
+      <!-- <ngx-dropzone-preview *ngFor="let f of files12" [removable]="true" (removed)="onRemove12(f)">
+        <ngx-dropzone-label>{{ f.name }})</ngx-dropzone-label>
+      </ngx-dropzone-preview> -->
+
+
+  </div>
+  <div>
+    <button mat-raised-button (click)="onSubmit()">Submit</button>
+  </div>
+</div>

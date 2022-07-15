@@ -1,0 +1,23 @@
+
+<section class="main-container">
+
+  <div class="btn-div">
+
+    <button mat-raised-button (click)="openUploadDialog()" class="add-btn">
+      <mat-icon class="ico">cloud_upload</mat-icon>
+      Upload Book code</button>
+  </div>
+
+  <div>
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Redeem</th>
+    </tr>
+    <tr *ngFor="let code of bookCodes">
+      <td>{{code.Code}}</td>
+      <td>{{code.USed}}</td>
+    </tr>
+  </table>
+  </div>
+</section>

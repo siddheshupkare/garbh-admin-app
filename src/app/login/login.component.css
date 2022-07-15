@@ -1,0 +1,384 @@
+
+  
+
+
+@media (min-width: 320px) and (max-width: 767px) {
+  
+
+  
+    .example-card{
+      display:none
+    }
+   
+    #hellotop{
+      margin-top:20%
+    }
+    /* bade */
+    body {
+      /* background-image: linear-gradient( #ffcf00,#ff5722); */
+      
+  background-color:whitesmoke
+    }
+  
+    .card-3 {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .overlay{
+      background-color:#0091ea;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+  }
+    
+    .example-card {
+      margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+          
+         
+          background-color: white;
+          padding: 60px 0 40px 0;
+          
+      
+    }
+    .input{
+      width:275px;
+    }
+    
+    .login{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+      
+    }
+    #outside{
+      display: inline-block;
+      width: 200%;
+      margin-left: 70%;
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+      box-shadow:         3px 3px 5px 6px #ccc;
+      
+    }
+    #inside{
+      display: inline-block;
+      width: 200%;
+      
+      margin-left: 35%;
+    }
+    .buttonui{
+      color:red;
+      
+  
+    }
+  
+   
+    .example-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  
+  
+    
+  
+    #bajume{
+      margin-left:0%
+    }
+   
+  
+   } 
+   
+  
+   @media (min-width: 700px) and (max-width: 900px) {
+  
+    .example-card{
+      display:none
+    }
+  
+    #bajume{
+      margin-left:70%
+    }
+   
+    #hellotop{
+      margin-top:20%;
+      text-align: center;
+    }
+    /* bade */
+    body {
+      /* background-image: linear-gradient( #ffcf00,#ff5722); */
+      
+  background-color:whitesmoke
+    }
+  
+    .card-3 {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .overlay{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+  }
+    
+    .example-card {
+      margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+          
+         
+          background-color: white;
+          padding: 60px 0 40px 0;
+          
+      
+    }
+    .input{
+      width:400px;
+      display: block;
+    margin-right: auto;
+    margin-left: auto;
+    }
+    
+    .login{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+      
+    }
+    #outside{
+      display: inline-block;
+      width: 200%;
+      margin-left: 70%;
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+      box-shadow:         3px 3px 5px 6px #ccc;
+      
+    }
+    #inside{
+      display: inline-block;
+      width: 200%;
+      
+      margin-left: 35%;
+    }
+    .buttonui{
+      color:red;
+      
+  
+    }
+    .example-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  
+  
+    
+  #cen{
+    text-align:center;
+  }
+  
+  
+  
+  
+  
+  }
+  
+   
+   
+   
+   /* tabs */
+   @media (min-width: 901px) and (max-width: 1024px) {
+    .example-card{
+      display:none
+    }
+  
+    #bajume{
+      margin-left:70%
+    }
+   
+    #hellotop{
+      margin-top:20%;
+      text-align: center;
+    }
+    /* bade */
+    body {
+      /* background-image: linear-gradient( #ffcf00,#ff5722); */
+      
+  background-color:whitesmoke
+    }
+  
+    .card-3 {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .overlay{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+  }
+    
+    .example-card {
+      margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+          
+         
+          background-color: white;
+          padding: 60px 0 40px 0;
+          
+      
+    }
+    .input{
+      width:400px;
+      display: block;
+    margin-right: auto;
+    margin-left: auto;
+    }
+    
+    .login{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+      
+    }
+    #outside{
+      display: inline-block;
+      width: 200%;
+      margin-left: 70%;
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+      box-shadow:         3px 3px 5px 6px #ccc;
+      
+    }
+    #inside{
+      display: inline-block;
+      width: 200%;
+      
+      margin-left: 35%;
+    }
+    .buttonui{
+      color:red;
+      
+  
+    }
+    .example-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  
+  
+    
+  #cen{
+    text-align:center;
+  }
+  
+  
+  
+  
+  
+  
+   }
+  
+   
+   @media (min-width: 1025px) {
+  
+  
+    /* bade */
+    body {
+      /* background-image: linear-gradient( #ffcf00,#ff5722); */
+      
+  background-color:whitesmoke
+    }
+  
+
+    .margin{
+      margin-left:7%;
+    }
+    .card-3 {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .overlay{
+      background-color:#397285;
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+      z-index:1000;
+  }
+    
+    .example-card {
+      margin: 0 auto; /* Added */
+          float: none; /* Added */
+          margin-bottom: 10px; /* Added */
+          
+         
+          background-color: white;
+          padding: 60px 0 40px 0;
+          
+      
+    }
+    .input{
+      width:275px;
+    }
+    
+    .login{
+      background-color: #397285;
+      margin-left: 40%;
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+      
+    }
+    #outside{
+      display: inline-block;
+      width: 200%;
+      margin-left: 70%;
+      -moz-box-shadow:    3px 3px 5px 6px #ccc;
+      -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+      box-shadow:         3px 3px 5px 6px #ccc;
+      
+    }
+    #inside{
+      display: inline-block;
+      width: 200%;
+      
+      margin-left: 35%;
+    }
+    .buttonui{
+      color:red;
+      
+  
+    }
+    .example-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  
+  
+    
+  
+  
+  
+  
+   }
+    

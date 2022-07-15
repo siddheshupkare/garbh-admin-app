@@ -1,0 +1,13 @@
+<section class="section-card" fxLayout="row wrap" fxLayoutAlign="space-between start">
+  <div class="card" [ngStyle]="{'background':menu.color}" *ngFor="let menu of menus">
+    <div class="img-container">
+      <img [src]="menu.menuIcon" alt="">
+    </div>
+    <div class="infos">
+      <h3 class="name">
+        {{menu.name}}
+      </h3>
+      <button class="btn btn-buy" [routerLink]="[menu.navigationUrl]">Click Here</button>
+    </div>
+  </div>
+</section>

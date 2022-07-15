@@ -1,0 +1,21 @@
+.form-field{
+  margin: 10px;
+}
+
+.btn-submit{
+  height: 50px !important;
+  margin-bottom: 20px;
+}
+
+.bulk-upload-sec{
+width: 500px;
+height: 200px;
+}
+
+.upload-icon{
+  font-size: 40px;
+}
+
+.file-ico{
+  font-size: 40px;
+}

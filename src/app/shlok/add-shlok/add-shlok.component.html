@@ -1,0 +1,28 @@
+<section>
+  <h1>{{editMode ? "Update Task" : "Add Task"}}</h1>
+<form [formGroup]="shlokForm" novalidate>
+  <div fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Add Shlok</mat-label>
+      <input matInput placeholder="add shlok" formControlName="shlok" >
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="column">
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Enter Pregnancy Day</mat-label>
+      <input matInput type="number" placeholder="Enter Pregnancy Day" formControlName="pregnancyDay">
+    </mat-form-field>
+    <mat-error class="err"
+      *ngIf="shlokForm.get('pregnancyDay').hasError('required') && shlokForm.get('pregnancyDay').touched">
+      Enter Pregnancy Day
+    </mat-error>
+  </div>
+
+  <div fxFlayout="row" fxLayoutAlign="end center">
+    <button mat-button class="sub-btn" (click)="onCancel()">Cancel</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="!editMode"  (click)="onSubmit()" [disabled]="shlokForm.invalid">Submit</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="editMode" (click)="onUpdate()" [disabled]="shlokForm.invalid">Update</button>
+  </div>
+</form>
+</section>

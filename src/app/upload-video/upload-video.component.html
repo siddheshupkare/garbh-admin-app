@@ -1,0 +1,72 @@
+<section class="form-sec">
+  <form [formGroup]="videoForm" novalidate>
+    <mat-dialog-content class="form-container" fxLayout="column">
+      <div fxLayout="column" class="video-container" *ngIf="showThumbnail">
+          <iframe [src]='safeUrl' frameborder="1" allowfullscreen></iframe>
+      </div>
+
+      <div fxLayout="column" fxFlex="100">
+        <div fxFlex="100" fxLayout="column">
+          <mat-form-field appearance="outline"  fxFlex="100">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Enter Title" formControlName="title">
+          </mat-form-field>
+          <mat-error class="err" *ngIf="videoForm.get('title').hasError('required') && videoForm.get('title').touched">
+            Title is required
+          </mat-error>
+        </div>
+
+        <div fxLayout="column" fxFlex="100">
+          <mat-form-field appearance="outline"  fxFlex="100">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Enter Description" formControlName="description">
+          </textarea>
+          </mat-form-field>
+          <mat-error class="err"
+            *ngIf="videoForm.get('description').hasError('required') && videoForm.get('description').touched">
+            Description is required
+          </mat-error>
+        </div>
+
+        <div fxLayout="column" fxFlex="100">
+        <mat-form-field appearance="outline"  fxFlex="100">
+          <mat-label>Youtube URL</mat-label>
+          <input matInput placeholder="Enter youtube url" (input)="sanitizeUrl()" formControlName="url">
+        </mat-form-field>
+        <mat-error class="err" *ngIf="videoForm.get('url').hasError('required') && videoForm.get('url').touched">
+          URL is required
+        </mat-error>
+      </div>
+
+
+        <div fxLayout="column" fxFlex="100" *ngIf="videoData.component === 'SPECIALVIDEO'">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Enter Duration</mat-label>
+            <input matInput type="number" placeholder="Enter duration in days" formControlName="duration">
+          </mat-form-field>
+          <mat-error class="err"
+            *ngIf="videoForm.get('duration').hasError('required') && videoForm.get('duration').touched">
+            Enter Number of Days
+          </mat-error>
+        </div>
+
+        <div fxLayout="column" fxFlex="100" *ngIf="videoData.component === 'MOTIVATIONAL' || videoData.component === 'YOGASANA'">
+          <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Enter Pregnancy Day</mat-label>
+            <input matInput type="number" placeholder="Enter Pregnancy Day" formControlName="pregnancyDay">
+          </mat-form-field>
+          <mat-error class="err"
+            *ngIf="videoForm.get('pregnancyDay').hasError('required') && videoForm.get('pregnancyDay').touched">
+            Enter Pregnancy Day
+          </mat-error>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="mat-dialog-actions">
+      <button mat-button class="sub-btn" (click)="onCancel()">Cancel</button>
+      <button mat-button class="sub-btn" color="primary"  *ngIf="showSubmit" (click)="onSubmit()" [disabled]="videoForm.invalid">Submit</button>
+      <button mat-button class="sub-btn" color="primary" *ngIf="!showSubmit" (click)="onUpdate()" [disabled]="videoForm.invalid">Update</button>
+
+    </mat-dialog-actions>
+  </form>
+</section>

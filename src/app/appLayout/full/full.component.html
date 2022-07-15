@@ -1,0 +1,29 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar style="background-color: #397285; color: white" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Garbh Sanskar</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" style="background-color: white;"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav style="background-color: white;font-weight: bold" #snav mode="over"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/app']">Dashboard</a>
+      </mat-nav-list>
+      <mat-nav-list *ngFor="let menu of menus">
+        <a mat-list-item [routerLink]="menu.navigationUrl">{{menu.name}}</a>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item (click)="logout()" style="background-color: #EA4335;color:white">Sign Out</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

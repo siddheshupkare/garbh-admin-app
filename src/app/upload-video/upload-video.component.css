@@ -1,0 +1,42 @@
+.err{
+  margin-bottom: 10px;
+  margin-top: -20px;
+}
+
+.form-sec{
+  width: 100%;
+  overflow: hidden;
+}
+
+.form-container{
+  overflow: auto;
+  /* border: 2px solid black; */
+  /* width: 800px; */
+}
+
+.video-container{
+  width: 100%;
+  border: 1px solid lightblue;
+  margin-bottom: 10px;
+}
+
+.url-div{
+  margin: 60px
+}
+
+.mat-dialog-actions {
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 75px;
+  align-items: center;
+  box-sizing: content-box;
+  margin-bottom: -24px;
+  justify-content: flex-end;
+}
+
+.sub-btn{
+  font-size: 16px;
+}
+
+

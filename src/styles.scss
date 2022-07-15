@@ -1,0 +1,49 @@
+// /* You can add global styles to this file, and also import other style files */
+// @import '~@angular/material/theming';
+// @import '../../theme.scss';
+// @include mat-core();
+
+// // I suggest that you should use another prefix, but `my-app` is fine as well
+// // Primary colour
+
+
+// $my-app-primary: mat-palette($mat-white);
+
+// // Accent colour
+// $my-app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// $my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent);
+
+// @include angular-material-theme($my-app-theme);
+// .alternate-theme {
+//     $alternate-primary: mat-palette($mat-light-blue);
+//     $alternate-accent:  mat-palette($mat-yellow, 400);
+
+//     $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+
+//     @include angular-material-theme($alternate-theme);
+//   }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.err{
+  margin-bottom: 10px;
+  margin-top: -20px;
+}
+
+.table-sec{
+   margin: 20px 0px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.main-container{
+  margin: 1% 10%;
+}
+
+.del-icon{
+  color: red;
+}
+

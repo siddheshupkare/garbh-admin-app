@@ -1,0 +1,105 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Add Music and Shloks</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <br>
+    <ngx-dropzone accept="image/jpeg,image/jpg,image/png,image/gif" (change)="onSelect($event)"
+      style="width:100%;height:30%;margin-left:auto;margin-right:auto">
+      <ngx-dropzone-label>Drop or Click to Upload Cover Photo</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+    <br>
+    <ngx-dropzone accept=".mp3,audio/*" (change)="onSelect12($event)"
+      style="width:100%;height:30%;margin-left:auto;margin-right:auto">
+      <ngx-dropzone-label>Drop or Click to Upload Music Files</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files12" [removable]="true" (removed)="onRemove12(f)">
+        <ngx-dropzone-label>{{ f.name }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </mat-card-content>
+</mat-card>
+<br>
+<p style="color: black;text-align: center;font-weight: bold;">Status : {{status}}</p>
+<mat-progress-bar mode="determinate" color="warn" value={{value}} style="width:70%;margin-left:auto;margin-right:auto">
+</mat-progress-bar>
+<br><br>
+<button mat-raised-button style="background-color: #397285;" class="button" (click)="upload()">Upload</button>
+<br><br>
+<button mat-flat-button color="primary" class="button" style="color:royalblue" *ngIf="state" (click)="link()">Get Cover
+  Pic Link</button>
+<button mat-flat-button color="primary" class="button" style="color:crimson" *ngIf="state1" (click)="link1()">Get Music
+  File Link</button>
+<br><br>
+<div class="container">
+  <div class="item" *ngFor="let member of members">
+    <mat-card class="example-card1">
+      <mat-card-content>
+        <div class="centered">
+        </div>
+        <h3 style="color:yellow">Music Cover Photo URL </h3>
+        <p style="color:white">{{member.url}}</p>
+        <mat-icon aria-hidden="false" [cdkCopyToClipboard]=member.url style="color:white;cursor: pointer;"
+          aria-label="Example home icon" (click)="copy()">content_copy</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="container">
+  <div class="item" *ngFor="let member of members12">
+    <mat-card class="example-card1">
+      <mat-card-content>
+        <div class="centered">
+        </div>
+        <h3 style="color:crimson">Music File URL </h3>
+        <p style="color:white">{{member.url}}</p>
+        <mat-icon aria-hidden="false" [cdkCopyToClipboard]=member.url style="color:white;cursor: pointer;"
+          aria-label="Example home icon" (click)="copy()">content_copy</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="container">
+  <div class="item" *ngFor="let member of updateordelete">
+    <mat-card class="example-card1">
+      <mat-card-content>
+        <div class="centered">
+        </div>
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Music Title</mat-label>
+          <input matInput name="title" style="color: white" placeholder="Music Title" [(ngModel)]=member.title>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Music Subtitle</mat-label>
+          <input matInput name="subtitle" style="color: white" placeholder="Music Subtitle" [(ngModel)]=member.subtitle>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Music Cover Photo URL</mat-label>
+          <input matInput name="cover" style="color: white" placeholder="Music Subtitle" [(ngModel)]=member.cover>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Music File URL</mat-label>
+          <input matInput name="file" style="color: white" placeholder="Music Subtitle" [(ngModel)]=member.file>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="centered">
+          <section class="cards">
+            <article class="card">
+              <button style="width:100%;" mat-raised-button color="primary" style="color:royalblue" type="submit"
+                (click)="update(member.title,member.subtitle,member.cover,member.file,member.id)">Update Music</button>
+            </article><!-- /card-one -->
+            <article class="card">
+              <button style="width:100%;" mat-raised-button color="warn" type="submit"
+                (click)="delete(member.title,member.subtitle,member.cover,member.file,member.id)">Delete Music</button>
+            </article><!-- /card-two -->
+          </section>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<br><br>

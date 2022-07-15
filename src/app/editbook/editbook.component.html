@@ -1,0 +1,60 @@
+   <ngx-dropzone (change)="onSelect($event)"  style="width:70%;margin-left:auto;margin-right:auto">
+	<ngx-dropzone-label>To edit  upload your new files</ngx-dropzone-label>
+	<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+		<ngx-dropzone-label>{{ f.name }})</ngx-dropzone-label>
+	</ngx-dropzone-preview>
+</ngx-dropzone>
+<br>
+<p style="color: black;text-align: center;font-weight: bold;">Status : {{status}}</p>
+<mat-progress-bar mode="determinate" color="warn" value={{value}} style="width:70%;margin-left:auto;margin-right:auto"></mat-progress-bar>
+<br><br>
+<button mat-raised-button style="background-color:#397285" class="button" (click)="upload()" >Upload</button>
+<br><br>
+<button mat-flat-button color="primary" class="button" style="color:royalblue" (click)="link()" *ngIf="state">Get Chapters Link</button>
+<br><br>
+<div class="container" >
+  <div class="item"  *ngFor="let member of members">
+    <mat-card class="example-card">
+<mat-card-content >
+  <div class="centered">
+</div>
+<p style="color:white">{{member.url}}</p>
+<mat-icon aria-hidden="false" [cdkCopyToClipboard]=member.url style="color:white;cursor: pointer;" aria-label="Example home icon" (click)="copy()">content_copy</mat-icon>
+</mat-card-content>
+</mat-card>
+</div>
+</div>
+<div class="container" >
+  <div class="item"  *ngFor="let member of files1">
+    <mat-card class="example-card">
+<mat-card-content >
+  <div class="centered">
+</div>
+<mat-form-field appearance="outline"  class="input">
+  <mat-label>Enter Chapter</mat-label>
+  <input matInput name="name" style="color: white"  placeholder="Chapter Name" [(ngModel)]="member.name" disabled  >
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Chapter Url</mat-label>
+    <input matInput name="url" style="color: white" placeholder="Select the url from above" [(ngModel)]="member.url" >
+    </mat-form-field>
+    <mat-form-field hintLabel="Max 80 characters" appearance="outline" class="input">
+      <mat-label>Chapter Description</mat-label>
+      <input name="description" style="color: white"  matInput #input maxlength="80" placeholder="Ex. Nougat" [(ngModel)]="member.description">
+      <mat-hint align="end">{{input.value?.length || 0}}/80</mat-hint>
+    </mat-form-field>
+</mat-card-content>
+<mat-card-actions>
+  <div class="centered">
+    <section class="cards">
+        <article class="card">
+          <button style="width:100%;"mat-raised-button color="primary" style="color:royalblue" type="submit" (click)="update(member.name,member.url,member.description)">Update Chapter</button>        </article><!-- /card-one -->
+<article class="card">
+  <button style="width:100%;"mat-raised-button color="warn" type="submit"  (click)="delete(member.name,member.url,member.description)" >Delete Chapter</button>
+    </article><!-- /card-two -->
+</section>
+</div>
+</mat-card-actions>
+</mat-card>
+</div>
+</div>

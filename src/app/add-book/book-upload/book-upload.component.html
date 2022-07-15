@@ -1,0 +1,47 @@
+<section>
+  <h1>{{editMode ? "Update Music/Shlok" : "Add Music/Shlok"}}</h1>
+<form [formGroup]="bookForm" novalidate>
+
+  <div style="margin:20px 0"  *ngIf="!bookSelected">
+    <input style="display:none" #media (change)="selectMedia($event)" type="file" accept=".pdf">
+    <button mat-raised-button (click)="media.click()" type="button" fxFlex="100">Select Book</button>
+  </div>
+  <div class="attachment"  *ngIf="bookSelected">
+    <h3><mat-icon class="material-icons-outlined">
+        attach_file</mat-icon>{{fileName}} Added</h3>
+  </div>
+  <div fxLayout="column">
+    <mat-form-field appearance="outline"  fxFlex="100">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Enter Title" formControlName="name">
+    </mat-form-field>
+    <mat-error class="err" *ngIf="bookForm.get('name').hasError('required') && bookForm.get('name').touched">
+      Title is required
+    </mat-error>
+  </div>
+
+  <div fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Decription</mat-label>
+      <input matInput placeholder="add description" formControlName="description" >
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="column">
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Enter Pregnancy Day</mat-label>
+      <input matInput type="number" placeholder="Enter Pregnancy Day" formControlName="pregnancyDay">
+    </mat-form-field>
+    <mat-error class="err"
+      *ngIf="bookForm.get('pregnancyDay').hasError('required') && bookForm.get('pregnancyDay').touched">
+      Enter Pregnancy Day
+    </mat-error>
+  </div>
+
+  <div fxFlayout="row" fxLayoutAlign="end center">
+    <button mat-button class="sub-btn" (click)="onCancel()">Cancel</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="!editMode"  (click)="onSubmit()" [disabled]="bookForm.invalid">Submit</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="editMode" (click)="onUpdate()" [disabled]="bookForm.invalid">Update</button>
+  </div>
+</form>
+</section>

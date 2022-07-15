@@ -1,0 +1,53 @@
+<!-- <app-upload-video></app-upload-video> -->
+<section class="main-container">
+  <div fxLayout="row" fxLayoutAlign="end start">
+    <button mat-raised-button (click)="addSpecialVideo()">Add Video</button>
+  </div>
+
+  <section class="table-sec">
+    <h1>Special Video List</h1>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="day">
+        <th mat-header-cell *matHeaderCellDef width="110"> Duration in Days </th>
+        <td mat-cell *matCellDef="let element" width="110"> {{element.duration}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef> Youtube URL </th>
+        <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element"><mat-icon (click)="onEdit(element.id)">edit</mat-icon></td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let element"> <mat-icon class="del-icon">delete_outline</mat-icon> </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </section>
+</section>
