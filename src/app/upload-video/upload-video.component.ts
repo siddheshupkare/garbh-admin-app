@@ -101,6 +101,18 @@ export class UploadVideoComponent implements OnInit {
       })
 
     }
+    else if (this.videoData.component === "YOGASANA") {
+      console.log("Yoga set form")
+      this.videoForm.removeControl("duration");
+      console.log(this.videoData.data)
+      this.videoForm.patchValue({
+        title: this.videoData.data.title,
+        description: this.videoData.data.description,
+        url: this.videoData.data.url,
+        pregnancyDay: this.videoData.data.pregnancyDay
+      })
+
+    }
 
   }
 
@@ -175,7 +187,7 @@ export class UploadVideoComponent implements OnInit {
       return item.pregnancyDay === this.videoForm.value.pregnancyDay
     })
     if(pregDayBoolean){
-      this.toast.error("Duplicate pregnancy day");
+      this.toast.error("Duplicate pregnancy month");
     }else{
       this.firebaseService.createDoc("YogasanVideos", this.videoForm.value).then(() => {
         this.toast.success("Video Added Successfully");

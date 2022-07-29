@@ -27,16 +27,6 @@
     </mat-form-field>
   </div>
 
-  <div fxLayout="column">
-    <mat-form-field appearance="outline" fxFlex="100">
-      <mat-label>Enter Pregnancy Day</mat-label>
-      <input matInput type="number" placeholder="Enter Pregnancy Day" formControlName="pregnancyDay">
-    </mat-form-field>
-    <mat-error class="err"
-      *ngIf="bookForm.get('pregnancyDay').hasError('required') && bookForm.get('pregnancyDay').touched">
-      Enter Pregnancy Day
-    </mat-error>
-  </div>
 
   <div fxFlayout="row" fxLayoutAlign="end center">
     <button mat-button class="sub-btn" (click)="onCancel()">Cancel</button>

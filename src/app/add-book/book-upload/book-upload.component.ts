@@ -31,8 +31,7 @@ export class BookUploadComponent implements OnInit {
   ngOnInit(): void {
     this.bookForm = this.fb.group({
       name: ['',Validators.required],
-      description: ['',Validators.required],
-      pregnancyDay: ['',Validators.required],
+      description: ['',Validators.required]
 
     })
     if(this.bookData.id !== undefined){
@@ -58,7 +57,6 @@ export class BookUploadComponent implements OnInit {
     this.bookForm.patchValue({
       title: this.bookData.title,
       description: this.bookData.description,
-      pregnancyDay: this.bookData.pregnancyDay,
 
     })
     this.bookUrl = this.bookData.url;
@@ -91,12 +89,12 @@ export class BookUploadComponent implements OnInit {
     }
   }
   onSubmit(){
-    let pregDayBoolean = this.bookList.some((item)=>{
-      return item.pregnancyDay === this.bookForm.value.pregnancyDay
-    })
-    if(pregDayBoolean){
-      this.toast.error("Duplicate pregnancy day");
-    }else{
+    // let pregDayBoolean = this.bookList.some((item)=>{
+    //   return item.pregnancyDay === this.bookForm.value.pregnancyDay
+    // })
+    // if(pregDayBoolean){
+    //   this.toast.error("Duplicate pregnancy day");
+    // }else{
       let data = {
         url:  this.mediaUrl,
         ...this.bookForm.value
@@ -110,7 +108,6 @@ export class BookUploadComponent implements OnInit {
         this.toast.error("Something Went Wrong");
         console.log(err)
       }
-   }
   }
 
   onUpdate(){

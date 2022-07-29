@@ -12,7 +12,7 @@ import { BookUploadComponent } from './book-upload/book-upload.component';
 export class AddBookComponent implements OnInit {
   bookList: any;
   dataSource: any;
-  displayedColumns: string[] = ['day', 'title','description', 'edit', 'delete'];
+  displayedColumns: string[] = ['title','description', 'edit', 'delete'];
   constructor(private firebaseService: FirebaseService,private dialog: MatDialog,
     private toastr: ToastrService){
   }
