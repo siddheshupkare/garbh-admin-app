@@ -38,6 +38,8 @@ import { AddMusicShlokComponent } from './musicandshloks/add-music-shlok/add-mus
 import { BookUploadComponent } from './add-book/book-upload/book-upload.component';
 import { ShlokComponent } from './shlok/shlok.component';
 import { AddShlokComponent } from './shlok/add-shlok/add-shlok.component';
+import { GarbhSamvadComponent } from './garbh-samvad/garbh-samvad.component';
+import { AddSamvadComponent } from './garbh-samvad/add-samvad/add-samvad.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,9 @@ import { AddShlokComponent } from './shlok/add-shlok/add-shlok.component';
     AddMusicShlokComponent,
     BookUploadComponent,
     ShlokComponent,
-    AddShlokComponent
+    AddShlokComponent,
+    GarbhSamvadComponent,
+    AddSamvadComponent
 
   ],
   imports: [

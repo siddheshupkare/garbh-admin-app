@@ -50,6 +50,13 @@ color:"linear-gradient(90deg,#ffbf96,#fe7096)"
     color:"linear-gradient(90deg,#ebb159a6,#f1a213)"
 
 },
+{
+  name: "Garbh Samvad",
+  navigationUrl: "garbhsamvad",
+  menuIcon:"assets/images/music.svg",
+  color:"linear-gradient(90deg,#ebb159a6,#f1a213)"
+
+}
 ]
 @Injectable({
   providedIn: 'root'

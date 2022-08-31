@@ -1,0 +1,78 @@
+<section>
+  <h1>{{editMode ? "Update Music/Shlok" : "Add Music/Shlok"}}</h1>
+<form [formGroup]="musicForm" novalidate>
+  <div class="cover-img" fxLayout="column" fxLayoutAlign="space-around center">
+    <input style="display: none" #image (change)="addCoverImage($event)" type="file" accept=".jpg, .jpeg, .png">
+    <ng-container *ngIf="!showCover">
+        <mat-icon   class="cover-ico material-icons-outlined">photo_camera</mat-icon>
+        <button type="button" mat-raised-button (click)="image.click()">Add Cover Image</button>
+     </ng-container>
+     <div *ngIf="showCover" class="show-cover">
+      <img *ngIf="showCover" [src]="imgSrc">
+      <button mat-raised-button class="change-btn" type="button" (click)="image.click()">Change Cover</button>
+      <mat-icon class="cancel-btn" (click)="onRemoveCover()">cancel</mat-icon>
+     </div>
+
+
+    <!-- <img src="">  -->
+  </div>
+
+  <div style="margin:20px 0">
+    <input style="display:none" #media (change)="selectMedia($event)" type="file" accept=".mp3">
+    <button mat-raised-button (click)="media.click()" type="button" fxFlex="100">Select garbh samvad</button>
+  </div>
+  <div class="attachment">
+    <audio controls style="width: inherit; height: 40px; ">
+      <source [src]="mediaSrc" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div fxLayout="column">
+    <mat-form-field appearance="outline"  fxFlex="100">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Enter Title" formControlName="title">
+    </mat-form-field>
+    <mat-error class="err" *ngIf="musicForm.get('title').hasError('required') && musicForm.get('title').touched">
+      Title is required
+    </mat-error>
+  </div>
+
+  <div fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>Subtitle</mat-label>
+      <input matInput placeholder="add subtitle" formControlName="subtitle" >
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="column">
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Enter Pregnancy Day</mat-label>
+      <input matInput type="number" placeholder="Enter Pregnancy Day" formControlName="pregnancyDay">
+    </mat-form-field>
+    <mat-error class="err"
+      *ngIf="musicForm.get('pregnancyDay').hasError('required') && musicForm.get('pregnancyDay').touched">
+      Enter Pregnancy Day
+    </mat-error>
+  </div>
+
+<!--
+  <div fxLayout="column">
+    <mat-form-field appearance="outline" fxFlex="100">
+      <mat-label>Type</mat-label>
+      <mat-select placeholder="Select Type" formControlName="type">
+        <mat-option *ngFor="let option of typeOptions"  [value]="option">{{option}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error class="err"
+      *ngIf="musicForm.get('type').hasError('required') && musicForm.get('type').touched">
+      Select Type
+    </mat-error>
+  </div> -->
+
+  <div fxFlayout="row" fxLayoutAlign="end center">
+    <button mat-button class="sub-btn" (click)="onCancel()">Cancel</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="!editMode"  (click)="onSubmit()" [disabled]="musicForm.invalid">Submit</button>
+    <button mat-button class="sub-btn" color="primary" *ngIf="editMode" (click)="onUpdate()" [disabled]="musicForm.invalid">Update</button>
+  </div>
+</form>
+</section>

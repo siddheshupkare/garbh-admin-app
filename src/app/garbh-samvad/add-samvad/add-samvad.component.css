@@ -1,0 +1,53 @@
+.cover-img{
+  width: auto;
+  height: 200px;
+  border: 0px solid #397285;
+  border-radius: 3px;
+  background-color: rgba(235, 231, 231, 0.76);
+}
+
+.cover-ico{
+  font-size: 80px;
+  margin-left: -52px;
+  color: grey;
+}
+.show-cover img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+}
+.change-btn{
+  background-color: #F8F8F8;
+  color: #FF0B46;
+  position: absolute;
+  margin-top: 10px;
+  left: 10px;
+}
+
+.cancel-btn{
+  position: absolute;
+  margin-top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: grey;
+}
+
+.show-cover{
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.attachment{
+  /* background-color: #3972859a; */
+  color: white;
+  /* border: 2px solid #397285; */
+  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  text-overflow: clip;
+  font-size: 21px;
+
+}

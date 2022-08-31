@@ -8,6 +8,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { EditbookComponent } from "./editbook/editbook.component";
 import { EditmusicandshloksComponent } from "./editmusicandshloks/editmusicandshloks.component";
 import { FaqComponent } from "./faq/faq.component";
+import { GarbhSamvadComponent } from "./garbh-samvad/garbh-samvad.component";
 import { LoginComponent } from "./login/login.component";
 import { MotivationalquotesComponent } from "./motivationalquotes/motivationalquotes.component";
 import { MusicandshloksComponent } from "./musicandshloks/musicandshloks.component";
@@ -19,7 +20,7 @@ import { YogasanvideosComponent } from "./yogasanvideos/yogasanvideos.component"
 
 const routes: Routes = [
   {
-    path:"",
+    path: "",
     pathMatch: "full",
     redirectTo: "login"
   },
@@ -31,44 +32,45 @@ const routes: Routes = [
     path: "app",
     component: FullComponent,
     children: [
-    {
-      path: "",
-      component: DashboardComponent
-    },
-    {
-      path: "add-book",
-      component: AddBookComponent
-    },
-    {
-      path: 'book-promocode',
-      component: BookCodeListComponent
-    },
-    {
-      path: 'editbook',
-      component: EditbookComponent
-    },
-    {
-      path: 'addyogasanvideos',
-      component: YogasanvideosComponent
-    },
-    {
-      path: 'special-video',
-      component: SpecialVideoComponent
-    },
-    {
-      path: 'tasks',
-      component: TaskComponent
-    },
-    {
-      path: 'shlok',
-      component: ShlokComponent
-    },
-    { path: 'motivationalqyotes', component: MotivationalquotesComponent },
-    { path: 'faq', component: FaqComponent },
-    { path: 'musicandshloks', component: MusicandshloksComponent },
-    { path: 'Editmusicandshloks', component: EditmusicandshloksComponent },
-    { path: 'Contactusqueries', component: ContactusqueriesComponent },
-    { path: 'book-promocode', component: BookCodeListComponent }
+      {
+        path: "",
+        component: DashboardComponent
+      },
+      {
+        path: "add-book",
+        component: AddBookComponent
+      },
+      {
+        path: 'book-promocode',
+        component: BookCodeListComponent
+      },
+      {
+        path: 'editbook',
+        component: EditbookComponent
+      },
+      {
+        path: 'addyogasanvideos',
+        component: YogasanvideosComponent
+      },
+      {
+        path: 'special-video',
+        component: SpecialVideoComponent
+      },
+      {
+        path: 'tasks',
+        component: TaskComponent
+      },
+      {
+        path: 'shlok',
+        component: ShlokComponent
+      },
+      { path: 'motivationalqyotes', component: MotivationalquotesComponent },
+      { path: 'faq', component: FaqComponent },
+      { path: 'musicandshloks', component: MusicandshloksComponent },
+      { path: 'Editmusicandshloks', component: EditmusicandshloksComponent },
+      { path: 'Contactusqueries', component: ContactusqueriesComponent },
+      { path: 'book-promocode', component: BookCodeListComponent },
+      { path: 'garbhsamvad', component: GarbhSamvadComponent },
     ]
   }]
 
