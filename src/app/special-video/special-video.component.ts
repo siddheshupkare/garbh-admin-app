@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import firebase from 'firebase'
+import { ToastrService } from 'ngx-toastr';
+import { FirebaseService } from '../shared/services/firebase.service';
 import { UploadVideoComponent } from '../upload-video/upload-video.component';
 
 @Component({
@@ -15,7 +17,8 @@ export class SpecialVideoComponent implements OnInit {
   videoList: any[]=[];
   dataSource: any;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private firebaseService: FirebaseService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.specialVideoList();
@@ -23,18 +26,28 @@ export class SpecialVideoComponent implements OnInit {
 
 
   specialVideoList(){
-    firebase.firestore().collection("specialVideos").get().then((snapshotChanges)=>{
-      snapshotChanges.forEach((doc)=>{
-        const data= doc.data()
-        const id =doc.id;
-        this.videoList.push({id,...data})
-        // this.dataSource.data.push(item)
+    this.firebaseService.getDocs("specialVideos").subscribe((data: any)=>{
+      this.videoList=data.map(data=>{
+        return({...data.payload.doc.data(),
+        id:data.payload.doc.id})
       })
-      this.dataSource = new MatTableDataSource([...this.videoList]);
-      console.log(this.dataSource.data)
-    }).catch((err)=>{
+      this.dataSource= new MatTableDataSource(this.videoList)
+      console.log(this.videoList);
+    },err=>{
       console.log(err)
     })
+    // firebase.firestore().collection("specialVideos").get().then((snapshotChanges)=>{
+    //   snapshotChanges.forEach((doc)=>{
+    //     const data= doc.data()
+    //     const id =doc.id;
+    //     this.videoList.push({id,...data})
+    //     // this.dataSource.data.push(item)
+    //   })
+    //   this.dataSource = new MatTableDataSource([...this.videoList]);
+    //   console.log(this.dataSource.data)
+    // }).catch((err)=>{
+    //   console.log(err)
+    // })
   }
 
   addSpecialVideo(videoData?: any){
@@ -55,5 +68,14 @@ export class SpecialVideoComponent implements OnInit {
       console.log(err)
     });
    }
+
+   onDelete(id: any){
+    this.firebaseService.deleteDoc("specialVideos",id).then(()=>{
+      this.toastr.success("Deleted Successfully");
+    }).catch(err=>{
+      console.log(err);
+      this.toastr.error("Something went wrong");
+    })
+  }
 
 }

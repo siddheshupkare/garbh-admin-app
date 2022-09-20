@@ -20,6 +20,7 @@ export class UploadVideoComponent implements OnInit {
   motivationVideoList: any;
   yogaVideoList: any;
   specialVideoList: any;
+  res: boolean;
   constructor(private fb: FormBuilder, private toast: ToastServiceService, private _sanitizer: DomSanitizer,
     private firestore: AngularFirestore,
     private firebaseService: FirebaseService,
@@ -41,8 +42,11 @@ export class UploadVideoComponent implements OnInit {
       this.setFormValue();
     }
     if (this.videoData.component === "MOTIVATIONAL" || this.videoData.component === "YOGASANA") {
-      console.log("hello")
       this.videoForm.removeControl("duration");
+      // this.videoForm.addControl("pregnancyDay",new FormControl('', Validators.required));
+    }
+    if (this.videoData.component === "SPECIALVIDEO" ) {
+      this.videoForm.removeControl("pregnancyDay");
       // this.videoForm.addControl("pregnancyDay",new FormControl('', Validators.required));
     }
   }
@@ -59,16 +63,24 @@ export class UploadVideoComponent implements OnInit {
 }
 
   getSpecialVideoList(){
-    firebase.firestore().collection("specialVideos").get().then((snapshotChanges)=>{
-      snapshotChanges.forEach((doc)=>{
-        const data= doc.data()
-        const id =doc.id;
-        this.specialVideoList.push({id,...data})
-        // this.dataSource.data.push(item)
+    this.firebaseService.getDocs("specialVideos").subscribe((data: any)=>{
+      this.specialVideoList=data.map(data=>{
+        return({...data.payload.doc.data(),
+        id:data.payload.doc.id})
       })
-    }).catch((err)=>{
+    },err=>{
       console.log(err)
     })
+    // firebase.firestore().collection("specialVideos").get().then((snapshotChanges)=>{
+    //   snapshotChanges.forEach((doc)=>{
+    //     const data= doc.data()
+    //     const id =doc.id;
+    //     this.specialVideoList.push({id,...data})
+    //     // this.dataSource.data.push(item)
+    //   })
+    // }).catch((err)=>{
+    //   console.log(err)
+    // })
   }
   yogasanaVideoList(){
     this.firebaseService.getDocs("YogasanVideos").subscribe((data: any)=>{
@@ -83,6 +95,7 @@ export class UploadVideoComponent implements OnInit {
   setFormValue() {
     this.showSubmit = false;
     if (this.videoData.component === "SPECIALVIDEO") {
+      this.videoForm.removeControl("pregnancyDay");
       this.videoForm.patchValue({
         title: this.videoData.data.title,
         description: this.videoData.data.description,
@@ -149,12 +162,12 @@ export class UploadVideoComponent implements OnInit {
   }
 
   postSpecialVideo() {
-    let pregDayBoolean = this.specialVideoList.some((item)=>{
-      return item.pregnancyDay === this.videoForm.value.pregnancyDay
-    })
-    if(pregDayBoolean){
-      this.toast.error("Duplicate pregnancy day");
-    }else{
+    // let pregDayBoolean = this.specialVideoList.some((item)=>{
+    //   return item.pregnancyDay === this.videoForm.value.pregnancyDay
+    // })
+    // if(pregDayBoolean){
+    //   this.toast.error("Duplicate pregnancy day");
+    // }else{
     firebase.firestore().collection("specialVideos").add(this.videoForm.value).
       then(() => {
         this.toast.success("Video Added Successfully");
@@ -162,7 +175,7 @@ export class UploadVideoComponent implements OnInit {
       }).catch(() => {
         this.toast.error("Something went wrong")
       })
-    }
+    // }
   }
 
   postMotivationalVideo() {
@@ -189,22 +202,39 @@ export class UploadVideoComponent implements OnInit {
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy month");
     }else{
-      this.firebaseService.createDoc("YogasanVideos", this.videoForm.value).then(() => {
-        this.toast.success("Video Added Successfully");
+      const docId= this.videoForm.value.pregnancyDay.toString()
+      firebase.firestore().collection("YogasanVideos").doc(docId).set(this.videoForm.value).then(()=>{
+        this.res =true;
         this.dialogRef.close();
-      }), err => {
-        console.log(err)
-      }
+      this.toast.success("Video added Successfully");
+      }).catch(err=>{
+        console.log(err);
+        this.toast.error("Something went wrong")
+      })
+      // this.firebaseService.createDoc("YogasanVideos", this.videoForm.value).then(() => {
+      //   this.toast.success("Video Added Successfully");
+      //   this.dialogRef.close();
+      // }), err => {
+      //   console.log(err)
+      // }
     }
   }
 
   updateSpecialVideo() {
-    this.firestore.collection("specialVideos").doc(this.videoData.id).update(this.videoForm.value).then(() => {
+    this.firebaseService.updateDoc("specialVideos", this.videoData.data.id, this.videoForm.value).then(() => {
       this.dialogRef.close();
+      this.toast.success("Video Updated Successfully");
+
     }).catch(err => {
       console.log(err)
       this.toast.error(err)
     })
+    // this.firestore.collection("specialVideos").doc(this.videoData.id).update(this.videoForm.value).then(() => {
+    //   this.dialogRef.close();
+    // }).catch(err => {
+    //   console.log(err)
+    //   this.toast.error(err)
+    // })
   }
 
   updateMotivationalVideo() {
@@ -234,11 +264,9 @@ export class UploadVideoComponent implements OnInit {
       this.updateSpecialVideo();
     }
     if (this.videoData.component === "MOTIVATIONAL") {
-      console.log("Hello")
       this.updateMotivationalVideo();
     }
     if (this.videoData.component === "YOGASANA") {
-      console.log("Hello")
       this.updateYogaVideo();
     }
 

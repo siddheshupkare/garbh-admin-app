@@ -16,7 +16,8 @@ export class YogasanvideosComponent implements OnInit {
   videoList: any[]=[];
   dataSource: any;
 
-  constructor(private dialog: MatDialog,private firebaseService: FirebaseService, private toastr: ToastrService) { }
+  constructor(private dialog: MatDialog,private firebaseService: FirebaseService,
+     private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.yogasanaVideoList();
