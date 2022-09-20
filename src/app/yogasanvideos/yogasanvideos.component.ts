@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import firebase from 'firebase'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadVideoComponent } from '../upload-video/upload-video.component';
 import { FirebaseService } from '../shared/services/firebase.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-yogasanvideos',
@@ -15,7 +16,7 @@ export class YogasanvideosComponent implements OnInit {
   displayedColumns: string[] = ['day', 'title', 'description', 'url', 'edit', 'delete'];
   videoList: any[]=[];
   dataSource: any;
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private dialog: MatDialog,private firebaseService: FirebaseService,
      private toastr: ToastrService) { }
 
@@ -32,7 +33,10 @@ export class YogasanvideosComponent implements OnInit {
         id:data.payload.doc.id})
       })
       this.dataSource= new MatTableDataSource(this.videoList)
-      console.log(this.videoList);
+      setTimeout(()=>{
+        this.dataSource.paginator = this.paginator;
+      },100)
+
     },err=>{
       console.log(err)
     })

@@ -185,13 +185,24 @@ export class UploadVideoComponent implements OnInit {
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy day");
     }else{
-      this.firebaseService.createDoc("MotivationalStories", this.videoForm.value).then(() => {
-        this.toast.success("Video Added Successfully");
+      const docId= this.videoForm.value.pregnancyDay.toString()
+      firebase.firestore().collection("MotivationalStories").doc(docId).set(this.videoForm.value).then(()=>{
+        this.res =true;
         this.dialogRef.close();
-      }), err => {
-        console.log(err)
-      }
+      this.toast.success("Video added Successfully");
+      }).catch(err=>{
+        console.log(err);
+        this.toast.error("Something went wrong")
+      })
     }
+
+    //   this.firebaseService.createDoc("MotivationalStories", this.videoForm.value).then(() => {
+    //     this.toast.success("Video Added Successfully");
+    //     this.dialogRef.close();
+    //   }), err => {
+    //     console.log(err)
+    //   }
+    // }
 
   }
 

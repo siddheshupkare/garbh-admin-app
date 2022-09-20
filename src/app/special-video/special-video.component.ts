@@ -36,18 +36,7 @@ export class SpecialVideoComponent implements OnInit {
     },err=>{
       console.log(err)
     })
-    // firebase.firestore().collection("specialVideos").get().then((snapshotChanges)=>{
-    //   snapshotChanges.forEach((doc)=>{
-    //     const data= doc.data()
-    //     const id =doc.id;
-    //     this.videoList.push({id,...data})
-    //     // this.dataSource.data.push(item)
-    //   })
-    //   this.dataSource = new MatTableDataSource([...this.videoList]);
-    //   console.log(this.dataSource.data)
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })
+
   }
 
   addSpecialVideo(videoData?: any){
