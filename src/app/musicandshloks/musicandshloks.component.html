@@ -4,7 +4,7 @@
     <button mat-raised-button (click)="addMusicShlok()">Add Music/Shlok</button>
   </div>
 
-  <section class="table-sec">
+  <section class="table-sec mat-elevation-z8">
     <h1>Music and Shlok List</h1>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -53,6 +53,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50]"
+    showFirstLastButtons
+     >
+  </mat-paginator>
 
   </section>
 </section>

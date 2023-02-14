@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { FirebaseService } from '../shared/services/firebase.service';
@@ -13,7 +14,8 @@ import { AddTaskComponent } from './add-task/add-task.component';
 export class TaskComponent implements OnInit {
   dataSource: any;
   displayedColumns: string[] = ['day', 'task', 'edit','delete'];
-  taskList: any
+  taskList: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private dialog: MatDialog,
     private toastr: ToastrService,
     private firebaseService: FirebaseService) { }
@@ -31,6 +33,10 @@ export class TaskComponent implements OnInit {
       })
       console.log(this.taskList);
       this.dataSource = new MatTableDataSource(this.taskList);
+      setTimeout(()=>{
+        this.dataSource.paginator = this.paginator;
+      },100)
+
     },err=>{
       console.log(err)
     })

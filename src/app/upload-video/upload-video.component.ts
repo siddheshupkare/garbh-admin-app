@@ -40,6 +40,7 @@ export class UploadVideoComponent implements OnInit {
     this.yogasanaVideoList();
     if (this.videoData.data.id !== undefined) {
       this.setFormValue();
+      this.videoForm.controls.pregnancyDay.disable();
     }
     if (this.videoData.component === "MOTIVATIONAL" || this.videoData.component === "YOGASANA") {
       this.videoForm.removeControl("duration");

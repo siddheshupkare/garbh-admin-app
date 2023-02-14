@@ -32,6 +32,7 @@ export class AddShlokComponent implements OnInit {
     if(this.taskFormData.id !== undefined){
       console.log("Edit mode")
       this.setFormValue();
+      this.shlokForm.controls.pregnancyDay.disable();
      }else{
       this.editMode = false;
      }
@@ -78,9 +79,10 @@ export class AddShlokComponent implements OnInit {
 }
 
   onUpdate(){
-    let pregDayBoolean = this.taskList.some((item)=>{
-      return item.pregnancyDay === this.shlokForm.value.pregnancyDay
-    })
+    let pregDayBoolean = false;
+    // let pregDayBoolean = this.taskList.some((item)=>{
+    //   return item.pregnancyDay === this.shlokForm.value.pregnancyDay
+    // })
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy day");
     }else{

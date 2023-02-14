@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { FirebaseService } from '../shared/services/firebase.service';
@@ -14,6 +15,7 @@ export class GarbhSamvadComponent implements OnInit {
   musicList: any;
   dataSource: any;
   displayedColumns: string[] = ['day', 'title','subtitle',  'edit', 'delete'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private firebaseService: FirebaseService,private dialog: MatDialog,
     private toastr: ToastrService){
   }
@@ -30,7 +32,9 @@ export class GarbhSamvadComponent implements OnInit {
         id:data.payload.doc.id})
       })
       this.dataSource= new MatTableDataSource(this.musicList)
-      console.log(this.musicList);
+      setTimeout(()=>{
+        this.dataSource.paginator = this.paginator;
+      },100)
     },err=>{
       console.log(err)
     })

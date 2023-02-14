@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/shared/services/firebase.service';
@@ -27,6 +28,7 @@ export class AddSamvadComponent implements OnInit {
   mediaSrc: any;
   formData: any
   musicList: any;
+
   constructor(private fb: FormBuilder,
     private toast: ToastrService,
     private firebaseService: FirebaseService,
@@ -45,6 +47,7 @@ export class AddSamvadComponent implements OnInit {
     })
     if(this.musicData.id !== undefined){
       this.setMusicFormValue();
+      this.musicForm.controls.pregnancyDay.disable();
       console.log(this.musicData)
     }
   }
@@ -105,9 +108,10 @@ export class AddSamvadComponent implements OnInit {
 }
 
   onUpdate(){
-    let pregDayBoolean = this.musicList.some((item : any)=>{
-      return item.pregnancyDay === this.musicForm.value.pregnancyDay
-    })
+    let pregDayBoolean = false;
+    // let pregDayBoolean = this.musicList.some((item : any)=>{
+    //   return item.pregnancyDay === this.musicForm.value.pregnancyDay
+    // })
 
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy day");

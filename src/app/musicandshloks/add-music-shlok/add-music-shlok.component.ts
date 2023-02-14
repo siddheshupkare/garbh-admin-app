@@ -45,6 +45,7 @@ export class AddMusicShlokComponent implements OnInit {
     })
     if(this.musicData.id !== undefined){
       this.setMusicFormValue();
+      this.musicForm.controls.pregnancyDay.disable();
       console.log(this.musicData)
     }
   }
@@ -105,9 +106,10 @@ export class AddMusicShlokComponent implements OnInit {
 }
 
   onUpdate(){
-    let pregDayBoolean = this.musicList.some((item : any)=>{
-      return item.pregnancyDay === this.musicForm.value.pregnancyDay
-    })
+    let pregDayBoolean =false;
+    // let pregDayBoolean = this.musicList.some((item : any)=>{
+    //   return item.pregnancyDay === this.musicForm.value.pregnancyDay
+    // })
 
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy day");

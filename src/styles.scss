@@ -24,7 +24,12 @@
 //     @include angular-material-theme($alternate-theme);
 //   }
 // html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }]
+
+// :host ::ng-deep.mat-icon{
+//   cursor: pointer !important;
+// }
+
 .err{
   margin-bottom: 10px;
   margin-top: -20px;

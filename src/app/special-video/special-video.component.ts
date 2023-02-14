@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import firebase from 'firebase'
@@ -16,7 +17,7 @@ export class SpecialVideoComponent implements OnInit {
   displayedColumns: string[] = ['day', 'title', 'description', 'url', 'edit', 'delete'];
   videoList: any[]=[];
   dataSource: any;
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private dialog: MatDialog,private firebaseService: FirebaseService,
     private toastr: ToastrService) { }
 
@@ -32,7 +33,9 @@ export class SpecialVideoComponent implements OnInit {
         id:data.payload.doc.id})
       })
       this.dataSource= new MatTableDataSource(this.videoList)
-      console.log(this.videoList);
+      setTimeout(()=>{
+        this.dataSource.paginator = this.paginator;
+      },100)
     },err=>{
       console.log(err)
     })

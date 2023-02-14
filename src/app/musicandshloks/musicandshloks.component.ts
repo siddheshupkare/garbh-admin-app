@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import firebase from 'firebase'
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddMusicShlokComponent } from './add-music-shlok/add-music-shlok.component';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-musicandshloks',
   templateUrl: './musicandshloks.component.html',
@@ -16,6 +17,7 @@ import { AddMusicShlokComponent } from './add-music-shlok/add-music-shlok.compon
 export class MusicandshloksComponent implements OnInit {
   musicList: any;
   dataSource: any;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['day', 'title','subtitle', 'type', 'edit', 'delete'];
   constructor(private firebaseService: FirebaseService,private dialog: MatDialog,
     private toastr: ToastrService){
@@ -33,6 +35,10 @@ export class MusicandshloksComponent implements OnInit {
         id:data.payload.doc.id})
       })
       this.dataSource= new MatTableDataSource(this.musicList)
+      setTimeout(()=>{
+        this.dataSource.paginator = this.paginator;
+      },100)
+
       console.log(this.musicList);
     },err=>{
       console.log(err)

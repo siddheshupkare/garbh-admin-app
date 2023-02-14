@@ -33,6 +33,7 @@ export class AddTaskComponent implements OnInit {
     if(this.taskFormData.id !== undefined){
       console.log("Edit mode")
       this.setFormValue();
+      this.taskForm.controls.pregnancyDay.disable();
      }else{
       this.editMode = false;
      }
@@ -79,9 +80,10 @@ export class AddTaskComponent implements OnInit {
 }
 
   onUpdate(){
-    let pregDayBoolean = this.taskList.some((item)=>{
-      return item.pregnancyDay === this.taskForm.value.pregnancyDay
-    })
+    let pregDayBoolean = false;
+    // let pregDayBoolean = this.taskList.some((item)=>{
+    //   return item.pregnancyDay === this.taskForm.value.pregnancyDay
+    // })
     if(pregDayBoolean){
       this.toast.error("Duplicate pregnancy day");
     }else{
